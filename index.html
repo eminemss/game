@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#container {
+display: flex;
+flex-wrap: wrap;
+justify-content: space-around;
+}
+
+.target {
+width: 100px;
+height: 100px;
+border: 1px solid black;
+text-align: center;
+line-height: 100px;
+font-size: 20px;
+margin: 10px;
+padding: 10px;
+}
+
+.number {
+float: left;
+width: 5px;
+height: 5px;
+background-color: white;
+border-radius: 5%;
+text-align: center;
+line-height: 10px;
+font-size: 20px;
+margin: 15px;
+padding: 15px;
+cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h1>Basic Addition</h1>
+
+<div id="container">
+<div class="target" id="target1" ondragover="allowDrop(event)" ondrop="drop(event)">1 + 1</div>
+<div class="target" id="target2" ondragover="allowDrop(event)" ondrop="drop(event)">2 + 2</div>
+<div class="target" id="target3" ondragover="allowDrop(event)" ondrop="drop(event)">3 + 3</div>
+<div class="target" id="target4" ondragover="allowDrop(event)" ondrop="drop(event)">4 + 4</div>
+<div class="target" id="target5" ondragover="allowDrop(event)" ondrop="drop(event)">5 + 5</div>
+<div class="target" id="target6" ondragover="allowDrop(event)" ondrop="drop(event)">6 + 6</div>
+<div class="target" id="target7" ondragover="allowDrop(event)" ondrop="drop(event)">7 + 7</div>
+<div class="target" id="target8" ondragover="allowDrop(event)" ondrop="drop(event)">8 + 8</div>
+<div class="target" id="target9" ondragover="allowDrop(event)" ondrop="drop(event)">9 + 9</div>
+<div class="target" id="target10" ondragover="allowDrop(event)" ondrop="drop(event)">10 + 10</div>
+</div>
+
+<div id="number">
+<br><br><br><br>
+<div class="number" id="number1" draggable="true" ondragstart="drag(event)">2</div>
+<div class="number" id="number2" draggable="true" ondragstart="drag(event)">4</div>
+<div class="number" id="number3" draggable="true" ondragstart="drag(event)">6</div>
+<div class="number" id="number4" draggable="true" ondragstart="drag(event)">8</div>
+<div class="number" id="number5" draggable="true" ondragstart="drag(event)">10</div>
+<div class="number" id="number6" draggable="true" ondragstart="drag(event)">12</div>
+<div class="number" id="number7" draggable="true" ondragstart="drag(event)">14</div>
+<div class="number" id="number8" draggable="true" ondragstart="drag(event)">16</div>
+<div class="number" id="number9" draggable="true" ondragstart="drag(event)">18</div>
+<div class="number" id="number10" draggable="true" ondragstart="drag(event)">20</div>
+</div>
+
+<script>
+function allowDrop(ev) {
+ev.preventDefault();
+}
+
+function drag(ev) {
+ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+ev.preventDefault();
+var data = ev.dataTransfer.getData("text");
+var shape = document.getElementById(data);
+ev.target.appendChild(shape);
+}
+
+for (var i = 1; i <= 10; i++) {
+var target = document.getElementById("target" + i);
+target.addEventListener("dragover", allowDrop);
+target.addEventListener("drop", drop);
+}
+
+for (var i = 1; i <= 10; i++) {
+var shape = document.getElementById("number" + i);
+shape.addEventListener("dragstart", drag);
+}
+</script>
+
+</body>
+</html>
